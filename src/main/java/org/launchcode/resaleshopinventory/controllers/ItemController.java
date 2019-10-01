@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.ArrayList;
 
 @Controller
-@RequestMapping("item")
+@RequestMapping(value = "item")
 public class ItemController {
 
     static ArrayList<String> items = new ArrayList<>();

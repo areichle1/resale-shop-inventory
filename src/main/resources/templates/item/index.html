@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8" />
-    <title th:text="${title}">Title</title>
-</head>
+<head th:replace="fragments :: head"></head>
 <body>
     <h1 th:text="${title}">Default Title</h1>
 
-    <a href="/item/add">Add Item</a>
+    <nav th:replace="fragments :: navigation"></nav>
 
     <p th:unless="${items} and ${items.size()}">No items yet</p>
 
