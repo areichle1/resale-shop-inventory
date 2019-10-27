@@ -1,8 +1,10 @@
 package org.launchcode.resaleshopinventory.controllers;
 
 import org.launchcode.resaleshopinventory.models.Item;
+import org.launchcode.resaleshopinventory.models.ItemData;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,13 +15,11 @@ import java.util.ArrayList;
 @RequestMapping(value = "item")
 public class ItemController {
 
-    static ArrayList<Item> items = new ArrayList<>();
-
     // Request path: /item
     @RequestMapping(value = "")
     public String index(Model model) {
 
-        model.addAttribute("items", items);
+        model.addAttribute("items", ItemData.getAll());
         model.addAttribute("title", "My Items");
         return "item/index";
     }
@@ -34,10 +34,9 @@ public class ItemController {
 
     // Request path: item/add
     @RequestMapping(value = "add", method = RequestMethod.POST)
-    public String processAddItemForm(@RequestParam String itemName, @RequestParam String itemDescription) {
+    public String processAddItemForm(@ModelAttribute Item newItem) {
 
-        Item newItem = new Item(itemName, itemDescription);
-        items.add(newItem);
+        ItemData.add(newItem);
 
         //Redirect to item/
         return "redirect:";
@@ -45,15 +44,15 @@ public class ItemController {
 
     @RequestMapping(value = "remove", method = RequestMethod.GET)
     public String displayRemoveItemForm(Model model) {
-        model.addAttribute("items", items);
+        model.addAttribute("items", ItemData.getAll());
         model.addAttribute("title", "Remove Item");
         return "item/remove";
     }
 
     @RequestMapping(value = "remove", method = RequestMethod.POST)
-    public String processRemoveItemForm(@RequestParam ArrayList<String> item) {
-        for (String anItem : item) {
-            items.remove(anItem);
+    public String processRemoveItemForm(@RequestParam int[] itemIds) {
+        for (int itemId : itemIds) {
+            ItemData.remove(itemId);
         }
         return "redirect:";
     }
