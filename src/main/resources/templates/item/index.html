@@ -12,12 +12,12 @@
 
         <tr>
             <th>Name</th>
-            <th>Description</th>
+            <th>Category</th>
         </tr>
 
         <tr th:each="item : ${items}">
             <td th:text="${item.name}"></td>
-            <td th:text="${item.description}"></td>
+            <td th:text="${item.category}"></td>
         </tr>
 
     </table>

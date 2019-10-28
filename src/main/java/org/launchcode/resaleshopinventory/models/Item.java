@@ -1,16 +1,25 @@
 package org.launchcode.resaleshopinventory.models;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 public class Item {
 
+    @NotNull
+    @Size(min=3, max=15)
     private String name;
-    private String description;
+
+    @NotNull
+    @Size(min=1, message = "Must enter a category")
+    private String category;
+    
     private int itemId;
     private static int nextId = 1;
 
-    public Item(String name, String description) {
+    public Item(String name, String category) {
         this();
         this.name = name;
-        this.description = description;
+        this.category = category;
     }
 
     public Item() {
@@ -30,11 +39,7 @@ public class Item {
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
-    }
+    public String getCategory() { return category; }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+    public void setCategory(String category) { this.category = category; }
 }

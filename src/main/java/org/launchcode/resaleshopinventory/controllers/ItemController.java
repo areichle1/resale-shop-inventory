@@ -4,11 +4,13 @@ import org.launchcode.resaleshopinventory.models.Item;
 import org.launchcode.resaleshopinventory.models.ItemData;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 
 @Controller
@@ -29,15 +31,20 @@ public class ItemController {
     public String displayAddItemForm(Model model) {
 
         model.addAttribute("title", "Add Item");
+        model.addAttribute(new Item());
         return "item/add";
     }
 
     // Request path: item/add
     @RequestMapping(value = "add", method = RequestMethod.POST)
-    public String processAddItemForm(@ModelAttribute Item newItem) {
+    public String processAddItemForm(@ModelAttribute @Valid Item newItem, Errors errors, Model model) {
+
+        if (errors.hasErrors()) {
+            model.addAttribute("title", "Add Item");
+            return "item/add";
+        }
 
         ItemData.add(newItem);
-
         //Redirect to item/
         return "redirect:";
     }
