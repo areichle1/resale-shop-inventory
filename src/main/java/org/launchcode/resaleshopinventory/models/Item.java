@@ -1,35 +1,38 @@
 package org.launchcode.resaleshopinventory.models;
 
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 
+@Entity
 public class Item {
+
+    @Id
+    @GeneratedValue
+    private int id;
 
     @NotNull
     @Size(min=3, max=15)
     private String name;
 
-    @NotNull
-    @Size(min=1, message = "Must enter a category")
-    private String category;
-    
-    private int itemId;
-    private static int nextId = 1;
+    @ManyToOne
+    private Category category;
 
-    public Item(String name, String category) {
+    @ManyToOne
+    private Store store;
+
+    @ManyToMany(mappedBy = "items")
+    private List<Store> stores;
+
+    public Item(String name, String category, String store) {
         this();
         this.name = name;
-        this.category = category;
     }
 
-    public Item() {
-        itemId = nextId;
-        nextId++;
-    }
+    public Item() { }
 
-    public int getItemId() { return itemId; }
-
-    public void setItemId(int itemId) { this.itemId = itemId; }
+    public int getId() { return id; }
 
     public String getName() {
         return name;
@@ -39,7 +42,11 @@ public class Item {
         this.name = name;
     }
 
-    public String getCategory() { return category; }
+    public Category getCategory() { return category; }
 
-    public void setCategory(String category) { this.category = category; }
+    public void setCategory(Category category) { this.category = category; }
+
+    public Store getStore() { return store; }
+
+    public void setStore(Store store) { this.store = store; }
 }

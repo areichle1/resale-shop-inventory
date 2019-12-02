@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8" />
-    <title th:text="${title}">Title</title>
+    <title th:text="${title}">My Items</title>
 
     <link rel="stylesheet" th:href="@{/css/styles.css}" />
     <script type="text/javascript" th:src="@{/js/script.js}"></script>
@@ -10,9 +10,9 @@
 <body>
 
 <nav th:fragment="navigation">
-    <a href="/item">List</a>
-    <a href="/item/add">Add</a>
-    <a href="/item/remove">Remove</a>
+    <a href="/item">Home</a>
+    <a href="/category">Categories</a>
+    <a href="/store">Stores</a>
 </nav>
 
 </body>

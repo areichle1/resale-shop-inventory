@@ -13,9 +13,20 @@
             <span th:errors="*{name}" class="error"></span>
         </div>
         <div class="form-group">
-            <label th:for="category">Category</label>
-            <input class="form-control" th:field="*{category}" />
-            <span th:errors="*{category}" class="error"></span>
+            <label th:for="type">Category</label>
+            <select name="categoryId">
+                <option th:each="category : ${categories}"
+                        th:text="${category.name}"
+                        th:value="${category.id}"></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label th:for="type">Store</label>
+            <select name="storeId">
+                <option th:each="store : ${stores}"
+                        th:text="${store.name}"
+                        th:value="${store.id}"></option>
+            </select>
         </div>
         <input type="submit" value="Add Item" />
     </form>
