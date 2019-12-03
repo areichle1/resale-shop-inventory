@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+
+<h1 th:text="${title}">Default Title</h1>
+
+<nav th:replace="fragments :: navigation"></nav>
+
+<P>Deleting a store will delete all of the associated items.</P>
+
+<form method="post">
+
+    <div th:each="store : ${stores}" class="checkbox">
+        <input type="checkbox" name="storeIds" th:value="${store.id}" th:id="${store.id}"/>
+        <label th:for="${store.id}" th:text="${store.name}"></label>
+        <br />
+    </div>
+
+    <input type="submit" value="Remove Store" />
+</form>
+
+</body>
+</html>

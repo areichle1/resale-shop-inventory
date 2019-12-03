@@ -2,17 +2,18 @@ package org.launchcode.resaleshopinventory.controllers;
 
 
 import org.launchcode.resaleshopinventory.models.Category;
+import org.launchcode.resaleshopinventory.models.Item;
 import org.launchcode.resaleshopinventory.models.data.CategoryDao;
+import org.launchcode.resaleshopinventory.models.data.ItemDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -22,8 +23,8 @@ public class CategoryController {
     @Autowired
     CategoryDao categoryDao;
 
-//    @Autowired
-//    ItemDao itemDao;
+    @Autowired
+    ItemDao itemDao;
 
     // Request path: /cheese
     @RequestMapping(value = "")
@@ -66,5 +67,27 @@ public class CategoryController {
             model.addAttribute("categoryId", item.getId());
         });
         return "category/view";
+    }
+
+    @RequestMapping(value = "remove", method = RequestMethod.GET)
+    public String displayRemoveCategoryForm(Model model) {
+        model.addAttribute("categories", categoryDao.findAll());
+        model.addAttribute("title", "Remove Category");
+        return "category/remove";
+    }
+
+    @RequestMapping(value = "remove", method = RequestMethod.POST)
+    public String processRemoveCategoryForm(@RequestParam int[] categoryIds) {
+
+        for (int categoryId : categoryIds) {
+            for (Item item : itemDao.findAll() ) {
+                if (item.getCategory().getId() == categoryId) {
+                    itemDao.deleteById(item.getId());
+                }
+            }
+            categoryDao.deleteById(categoryId);
+        }
+
+        return "redirect:";
     }
 }
