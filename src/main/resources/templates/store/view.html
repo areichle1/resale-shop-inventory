@@ -10,13 +10,15 @@
 
     <!--<p th:unless="${items == null}">no items yet</p>-->
 
-    <table class="table">
+    <table class="table table-bordered table-sm">
 
+        <thead class="thead-light">
         <tr>
             <th>Name</th>
             <th>Category</th>
             <th>Store</th>
         </tr>
+        </thead>
 
         <tr th:each="item : ${items}">
             <td th:text="${item.name}"></td>

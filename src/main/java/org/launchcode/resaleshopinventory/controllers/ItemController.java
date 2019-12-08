@@ -3,9 +3,11 @@ package org.launchcode.resaleshopinventory.controllers;
 import org.launchcode.resaleshopinventory.models.Category;
 import org.launchcode.resaleshopinventory.models.Item;
 import org.launchcode.resaleshopinventory.models.Store;
+import org.launchcode.resaleshopinventory.models.User;
 import org.launchcode.resaleshopinventory.models.data.CategoryDao;
 import org.launchcode.resaleshopinventory.models.data.ItemDao;
 import org.launchcode.resaleshopinventory.models.data.StoreDao;
+import org.launchcode.resaleshopinventory.models.data.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,8 +16,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import javax.validation.Valid;
+import javax.validation.constraints.Null;
 
 @Controller
 @RequestMapping(value = "item")
@@ -30,11 +32,31 @@ public class ItemController {
     @Autowired
     private StoreDao storeDao;
 
+    public String current_user;
+
+   //
+//    @Autowired
+//    private UserDao userDao;
+//
     // Request path: /item
     @RequestMapping(value = "")
     public String index(Model model) {
+        //current_user = UserController.current_user;
+        //String user_items = Null;
 
-        model.addAttribute("items", itemDao.findAll());
+//        if (current_user != Null) {
+//            user_items = Items;
+//            for (Item item: itemDao.findAll()) {
+//                if (item.getUserId() == current_user.getId()) {
+//                    user_items.addtolist(item);
+//                }
+//            }
+//        } else { // current_user == Null thus we display everything
+//            //I want to do if current_user is logged out we display the login page
+//            user_items = Null;
+//        }
+
+        //model.addAttribute("items", user_items);
         model.addAttribute("title", "My Items");
         return "item/index";
     }
@@ -43,6 +65,10 @@ public class ItemController {
     @RequestMapping(value = "add", method = RequestMethod.GET)
     public String displayAddItemForm(Model model) {
 
+        /// check if user is logged in
+        // if logged in, display web page
+        // if not logged in, display error
+        //if clicking on any other page and not logged in link to login page
         model.addAttribute("title", "Add Item");
         model.addAttribute(new Item());
         model.addAttribute("categories", categoryDao.findAll());
@@ -59,10 +85,18 @@ public class ItemController {
             model.addAttribute("title", "Add Item");
             return "item/add";
         }
-
-        newItem.setCategory(categoryId);
-        newItem.setStore(storeId);
-        itemDao.save(newItem);
+//        current_user = User.current_user;
+//
+//        if (current_user != Null) {
+//            newItem.setCategory(categoryId);
+//            newItem.setStore(storeId);
+//            newItem.setUserId(current_user);
+//            itemDao.save(newItem);
+//        } else {
+//            // throw error
+//            // put item in without user
+//            // user has to be logged in to add an item
+//        }
 
         //Redirect to item/
         return "redirect:";

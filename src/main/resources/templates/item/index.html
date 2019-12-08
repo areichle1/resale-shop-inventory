@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
-<body>
+
+<body class="container">
     <h1 th:text="${title}">Default Title</h1>
 
     <nav th:replace="fragments :: navigation"></nav>
 
     <p th:unless="${items} and ${items.size()}">No items yet</p>
 
-    <table class="table">
+    <table class="table table-bordered table-sm">
 
+        <thead class="thead-light">
         <tr>
             <th>Name</th>
             <th>Category</th>
             <th>Store</th>
         </tr>
+        </thead>
 
         <tr th:each="item : ${items}">
             <td th:text="${item.name}"></td>

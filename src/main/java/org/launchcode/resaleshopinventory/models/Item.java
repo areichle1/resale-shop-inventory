@@ -21,7 +21,11 @@ public class Item {
 
     @ManyToOne
     private Store store;
-
+    //
+    @ManyToOne
+    private User user;
+//
+    //this below is never used but was in the last commit
     @ManyToMany(mappedBy = "items")
     private List<Store> stores;
 
