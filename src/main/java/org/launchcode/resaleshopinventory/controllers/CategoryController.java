@@ -9,21 +9,60 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.Optional;
 
 @Controller
 @RequestMapping("category")
 public class CategoryController {
+//extends AbstractBaseController
 
+//    @Autowired
+//    CategoryRepository categoryRepository;
+//
+//    @GetMapping
+//    public String listCategories(Model model) {
+//        model.addAttribute("title", "Categories");
+//        model.addAttribute("categories", categoryRepository.findAll());
+//        return "category/index";
+//    }
+//
+//    @GetMapping(value = "add")
+//    public String displayAddCategoryForm(Model model, HttpServletRequest request) {
+//        model.addAttribute("title", "Create Category");
+//        model.addAttribute(new Category());
+//        model.addAttribute("actionUrl", request.getRequestURI());
+//        return "category/add.html";
+//    }
+//
+//    @PostMapping(value = "add")
+//    public String processAddCategoryForm(@ModelAttribute @Valid Category category,
+//                                             Errors errors,
+//                                             RedirectAttributes model) {
+//
+//        if (errors.hasErrors())
+//            return "category/add";
+//
+//        categoryRepository.save(category);
+//        model.addFlashAttribute(MESSAGE_KEY, "success|New category added: " + category.getName());
+//
+//        return "redirect:/category";
+//    }
+
+
+
+
+    //below here was all my stuff before
     @Autowired
     CategoryDao categoryDao;
 
     @Autowired
     ItemDao itemDao;
 
-    // Request path: /cheese
+    // Request path: /category
     @RequestMapping(value = "")
     public String index(Model model) {
         model.addAttribute("categories", categoryDao.findAll());

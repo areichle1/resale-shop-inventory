@@ -9,14 +9,50 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.Optional;
 
 @Controller
 @RequestMapping("store")
 public class StoreController {
+    //extends AbstractBaseController
 
+//    @Autowired
+//    StoreRepository storeRepository;
+//
+//    @GetMapping
+//    public String listStores(Model model) {
+//        model.addAttribute("title", "Stores");
+//        model.addAttribute("stores", storeRepository.findAll());
+//        return "store/index";
+//    }
+//
+//    @GetMapping(value = "add")
+//    public String displayAddStoreForm(Model model, HttpServletRequest request) {
+//        model.addAttribute("title", "Create Store");
+//        model.addAttribute(new Store());
+//        model.addAttribute("actionUrl", request.getRequestURI());
+//        return "store/add.html";
+//    }
+//
+//    @PostMapping(value = "add")
+//    public String processAddStoreForm(@ModelAttribute @Valid Store store,
+//                                             Errors errors,
+//                                             RedirectAttributes model) {
+//
+//        if (errors.hasErrors())
+//            return "store/add";
+//
+//        storeRepository.save(store);
+//        model.addFlashAttribute(MESSAGE_KEY, "success|New store added: " + store.getName());
+//
+//        return "redirect:/store";
+//    }
+
+    //this is my work that worked before changing stuff
     @Autowired
     StoreDao storeDao;
 

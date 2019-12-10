@@ -19,6 +19,9 @@
         </tr>
         </thead>
 
+<!--how do I say here I want to show only the items associated with a certain user?
+but I think im doing this in ItemController already-->
+
         <tr th:each="item : ${items}">
             <td th:text="${item.name}"></td>
             <td th:text="${item.category.name}"></td>

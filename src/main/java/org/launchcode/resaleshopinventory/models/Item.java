@@ -7,6 +7,7 @@ import java.util.List;
 
 @Entity
 public class Item {
+    //extends AbstractEntity
 
     @Id
     @GeneratedValue
@@ -29,14 +30,39 @@ public class Item {
     @ManyToMany(mappedBy = "items")
     private List<Store> stores;
 
+//    @ManyToMany(mappedBy = "items")
+//    private List<Category> categories;
+
     public Item(String name, String category, String store) {
         this();
         this.name = name;
+//        this.category = category;
+//        this.store = store;
     }
 
     public Item() { }
 
     public int getId() { return id; }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public List<Store> getStores() {
+        return stores;
+    }
+
+    public void setStores(List<Store> stores) {
+        this.stores = stores;
+    }
 
     public String getName() {
         return name;
