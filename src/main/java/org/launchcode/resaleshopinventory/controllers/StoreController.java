@@ -2,7 +2,6 @@ package org.launchcode.resaleshopinventory.controllers;
 
 import org.launchcode.resaleshopinventory.models.Item;
 import org.launchcode.resaleshopinventory.models.Store;
-import org.launchcode.resaleshopinventory.models.data.ItemDao;
 import org.launchcode.resaleshopinventory.models.data.StoreDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -56,8 +55,8 @@ public class StoreController {
     @Autowired
     StoreDao storeDao;
 
-    @Autowired
-    ItemDao itemDao;
+//    @Autowired
+//    ItemDao itemDao;
 
     @RequestMapping(value = "")
     public String index(Model model) {
@@ -102,25 +101,26 @@ public class StoreController {
             return "store/view";
     }
 
-    @RequestMapping(value = "remove", method = RequestMethod.GET)
-    public String displayRemoveStoreForm(Model model) {
-        model.addAttribute("stores", storeDao.findAll());
-        model.addAttribute("title", "Remove Store");
-        return "store/remove";
-    }
 
-    @RequestMapping(value = "remove", method = RequestMethod.POST)
-    public String processRemoveStoreForm(@RequestParam int[] storeIds) {
-
-        for (int storeId : storeIds) {
-            for (Item item : itemDao.findAll()) {
-                if (item.getStore().getId() == storeId) {
-                    itemDao.deleteById(item.getId());
-                }
-            }
-            storeDao.deleteById(storeId);
-        }
-
-        return "redirect:";
-    }
+//    @RequestMapping(value = "remove", method = RequestMethod.GET)
+//    public String displayRemoveStoreForm(Model model) {
+//        model.addAttribute("stores", storeDao.findAll());
+//        model.addAttribute("title", "Remove Store");
+//        return "store/remove";
+//    }
+//
+//    @RequestMapping(value = "remove", method = RequestMethod.POST)
+//    public String processRemoveStoreForm(@RequestParam int[] storeIds) {
+//
+//        for (int storeId : storeIds) {
+//            for (Item item : itemDao.findAll()) {
+//                if (item.getStore().getId() == storeId) {
+//                    itemDao.deleteById(item.getId());
+//                }
+//            }
+//            storeDao.deleteById(storeId);
+//        }
+//
+//        return "redirect:";
+//    }
 }

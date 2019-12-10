@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+
+    <h1 th:text="${title}">Default Title</h1>
+
+    <div th:replace="fragments :: header"></div>
+
+    <div class="container-fluid">
+
+        <div class="row justify-content-center">
+
+            <form method="post" th:action="@{/login}" class="col-8 mt-4">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input id="email" class="form-control" name="email"/>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input id="password" class="form-control" type="password" name="password" />
+                </div>
+
+                <div class="form-group">
+                    <input id="remember-me" type="checkbox" name="remember-me" />
+                    <label for="remember-me">Remember Me</label>
+                </div>
+
+                <input type="submit" class="btn btn-primary" value="Log In" />
+            </form>
+
+        </div>
+
+<!--        <div th:replace="fragments :: footer"></div>-->
+    </div>
+
+</body>
+</html>
+
+<!--    <nav th:replace="fragments :: navigation"></nav>-->
+
+<!--    ${SPRING_SECURITY_LAST_EXCEPTION.message}-->
+
+<!--    <form method="post" style="max-width:600px;" th:object="${user}">
+        <div class="form-group">
+            <label th:for="*{username}">Username</label>
+            <input class="form-control" name="username" type="text" th:field="*{username}" />
+            <span th:errors="*{username}" class="error" style="color: red;"></span>
+        </div>
+        <div class="form-group">
+            <label th:for="*{password}">Password</label>
+            <input class="form-control" name="password" type="password" th:field="*{password}" />
+            <span th:errors="*{password}" class="error" style="color: red;"></span>
+        </div>
+
+        <p th:if="${error_message}" style="color:red;" th:text="${error_message}"></p>
+
+        <input type="submit" value="login" />
+    </form>-->
+
+<!--    <form action="login" method="POST">-->
+<!--        <table>-->
+<!--            <tr>-->
+<!--                <td>User:</td>-->
+<!--                <td><input type="text" name="username" value=""> </td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td>Password:</td>-->
+<!--                <td><input type="password" name="password" value="submit"/> </td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td><input name="submit" type="submit" value="submit" /></td>-->
+<!--            </tr>-->
+<!--        </table>-->
+<!--    </form>-->
+
