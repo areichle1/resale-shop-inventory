@@ -3,18 +3,16 @@ package org.launchcode.resaleshopinventory.models;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.List;
 
 @Entity
 public class Item {
-    //extends AbstractEntity
 
     @Id
     @GeneratedValue
     private int id;
 
     @NotNull
-    @Size(min=3, max=15)
+    @Size(min=3, max=30)
     private String name;
 
     @ManyToOne
@@ -22,22 +20,15 @@ public class Item {
 
     @ManyToOne
     private Store store;
-    //
+
     @ManyToOne
     private User user;
-//
-    //this below is never used but was in the last commit
-    @ManyToMany(mappedBy = "items")
-    private List<Store> stores;
 
-//    @ManyToMany(mappedBy = "items")
-//    private List<Category> categories;
-
-    public Item(String name, String category, String store) {
+    public Item(String name, Category category, Store store) {
         this();
         this.name = name;
-//        this.category = category;
-//        this.store = store;
+        this.category = category;
+        this.store = store;
     }
 
     public Item() { }
@@ -54,14 +45,6 @@ public class Item {
 
     public void setUser(User user) {
         this.user = user;
-    }
-
-    public List<Store> getStores() {
-        return stores;
-    }
-
-    public void setStores(List<Store> stores) {
-        this.stores = stores;
     }
 
     public String getName() {

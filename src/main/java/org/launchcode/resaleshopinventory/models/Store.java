@@ -14,21 +14,19 @@ public class Store {
     private int id;
 
     @NotNull
-    @Size(min=3, max=15)
+    @Size(min=3, max=30)
     private String name;
 
-//    @ManyToMany
-//    private List<Item> items;
+    @ManyToOne
+    private User user;
 
     @OneToMany
     @JoinColumn(name = "store_id")
     private List<Item> items = new ArrayList<>();
 
-    public void addIndItem(Item indItem) {
-        items.add(indItem);
-    }
+    public Store() {}
 
-    public Store() {
+    public Store(String name) {
         this.name = name;
     }
 
@@ -51,4 +49,10 @@ public class Store {
     public List<Item> getItems() {
         return items;
     }
+
+    public void setItems(List<Item> items) { this.items = items; }
+
+    public User getUser() { return user; }
+
+    public void setUser(User user) { this.user = user; }
 }

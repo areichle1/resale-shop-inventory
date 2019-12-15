@@ -1,7 +1,8 @@
-package org.launchcode.resaleshopinventory.models;
+package org.launchcode.resaleshopinventory.services;
 
-//import org.launchcode.resaleshopinventory.models.data.User;
-import org.launchcode.resaleshopinventory.models.data.UserRepository;
+import org.launchcode.resaleshopinventory.models.EmailExistsException;
+import org.launchcode.resaleshopinventory.models.User;
+import org.launchcode.resaleshopinventory.models.data.UserDao;
 import org.launchcode.resaleshopinventory.models.forms.UserForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -13,7 +14,7 @@ import javax.transaction.Transactional;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    private UserRepository userRepository;
+    private UserDao userDao;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -22,7 +23,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User save(UserForm userDto) throws EmailExistsException {
 
-        User existingUser = userRepository.findByEmail(userDto.getEmail());
+        User existingUser = userDao.findByEmail(userDto.getEmail());
         if (existingUser != null)
             throw new EmailExistsException("The email address "
                     + userDto.getEmail() + " already exists in the system");
@@ -31,14 +32,14 @@ public class UserServiceImpl implements UserService {
                 userDto.getFullName(),
                 userDto.getEmail(),
                 passwordEncoder.encode(userDto.getPassword()));
-        userRepository.save(newUser);
+        userDao.save(newUser);
 
         return newUser;
     }
 
     @Override
     public User findByEmail(String email) {
-        return userRepository.findByEmail(email);
+        return userDao.findByEmail(email);
     }
 
 }

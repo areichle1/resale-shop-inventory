@@ -1,6 +1,7 @@
-package org.launchcode.resaleshopinventory.models;
+package org.launchcode.resaleshopinventory.services;
 
-import org.launchcode.resaleshopinventory.models.data.UserRepository;
+import org.launchcode.resaleshopinventory.models.User;
+import org.launchcode.resaleshopinventory.models.data.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -16,12 +17,12 @@ import java.util.List;
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
-    private UserRepository userRepository;
+    private UserDao userDao;
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
-        User user = userRepository.findByEmail(email);
+        User user = userDao.findByEmail(email);
         if (user == null) {
             throw new UsernameNotFoundException(
                     "No user found with email: "+ email);

@@ -1,7 +1,7 @@
 package org.launchcode.resaleshopinventory.controllers;
 
 import org.launchcode.resaleshopinventory.models.User;
-import org.launchcode.resaleshopinventory.models.UserService;
+import org.launchcode.resaleshopinventory.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
 

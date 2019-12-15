@@ -3,22 +3,23 @@
 <head th:replace="fragments :: head"></head>
 
 <body class="container">
-<h1 th:text="${title}">Default Title</h1>
 
-<nav th:replace="fragments :: navigation"></nav>
+    <div th:replace="fragments :: header"></div>
 
-<P>Deleting a category will delete all of the associated items.</P>
+    <h1 th:text="${title}">Default Title</h1>
 
-<form method="post">
+    <p>Deleting a category will delete all of the associated items.</p>
 
-    <div th:each="category : ${categories}" class="checkbox">
-        <input type="checkbox" name="categoryIds" th:value="${category.id}" th:id="${category.id}"/>
-        <label th:for="${category.id}" th:text="${category.name}"></label>
-        <br />
-    </div>
+    <form method="post" style="max-width:600px;" th:action="@{/category/remove}" th:object="${category}">
 
-    <input type="submit" value="Remove Category" />
-</form>
+        <div th:each="category : ${categories}" class="checkbox">
+            <input type="checkbox" name="categoryIds" th:value="${category.id}" th:id="${category.id}"/>
+            <label th:for="${category.id}" th:text="${category.name}"></label>
+            <br />
+        </div>
+
+        <input type="submit" value="Remove Category" />
+    </form>
 
 </body>
 </html>
