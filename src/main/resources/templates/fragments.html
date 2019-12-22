@@ -13,7 +13,7 @@
 
 <div th:fragment="header">
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #CCCCFF">
         <a class="navbar-brand" th:href="@{/}">Resale Shop Inventory</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -22,23 +22,23 @@
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a th:href="@{/item/add}">Add Item</a>
-                </li> |
+                    <a th:href="@{/item/add}" class="nav-link">Add Item</a>
+                </li>
                 <li class="nav-item">
-                    <a th:href="@{/item/remove}">Remove Item</a>
-                </li> |
+                    <a th:href="@{/item/remove}" class="nav-link">Remove Item</a>
+                </li>
                 <li class="nav-item">
-                    <a th:href="@{/category}">Categories</a>
-                </li> |
+                    <a th:href="@{/category}" class="nav-link">Categories</a>
+                </li>
                 <li class="nav-item">
-                    <a th:href="@{/store}">Stores</a>
-                </li> |
+                    <a th:href="@{/store}" class="nav-link">Stores</a>
+                </li>
                 <li class="nav-item" sec:if="${#authorization.expression('isAuthenticated()')}">
                     <form th:action="@{/logout}" method="post" name="logoutForm"></form>
-                    <a href="#" onclick="document.logoutForm.submit()">Log Out</a>
-                </li> |
+                    <a href="#" class="nav-link" onclick="document.logoutForm.submit()">Log Out</a>
+                </li>
                 <li class="nav-item" sec:if="${#authorization.expression('!isAuthenticated()')}">
-                    <a th:href="@{/register}">Register</a>
+                    <a th:href="@{/register}" class="nav-link">Register</a>
                 </li>
             </ul>
         </div>
@@ -56,7 +56,7 @@
 </div>
 
 <div th:fragment="footer">
-    <div class="fixed-bottom text-center py-3 bg-secondary text-white-50">
+    <div class="fixed-bottom text-center py-3 bg-white">
         2020 Copyright &copy; Andrea Reichle
     </div>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
