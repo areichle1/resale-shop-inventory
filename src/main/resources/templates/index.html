@@ -14,9 +14,10 @@
 
                 <thead class="thead-light">
                 <tr>
-                    <th>Name</th>
+                    <th>Item</th>
                     <th>Category</th>
                     <th>Store</th>
+                    <th>Date</th>
                 </tr>
                 </thead>
 
@@ -24,6 +25,7 @@
                     <td th:text="${item.name}"></td>
                     <td th:text="${item.category.name}"></td>
                     <td th:text="${item.store.name}"></td>
+                    <td th:text="${item.date}"></td>
                 </tr>
 
             </table>

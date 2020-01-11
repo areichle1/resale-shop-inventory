@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.security.Principal;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,6 +46,7 @@ public class ItemController extends AbstractBaseController {
     public String displayAddItemForm(Model model, Principal principal) {
 
         User user = userService.findByEmail(principal.getName());
+        LocalDate date = java.time.LocalDate.now();
         if (user.isEnabled()) {
             Item item = new Item();
             item.setUser(user);
@@ -52,6 +54,7 @@ public class ItemController extends AbstractBaseController {
             model.addAttribute("title", "Add Item");
             model.addAttribute("categories", categoryService.findUserCategories(user));
             model.addAttribute("stores", storeService.findUserStores(user));
+            model.addAttribute("date", date);
             return "item/add";
         } else {
             return "/login";
@@ -63,9 +66,11 @@ public class ItemController extends AbstractBaseController {
     public String processAddItemForm(Model model, Principal principal,
                                      @ModelAttribute @Valid Item newItem,
                                      Errors errors, @RequestParam Category categoryId,
-                                     @RequestParam Store storeId) {
+                                     @RequestParam Store storeId, @RequestParam String date) {
 
         User user = userService.findByEmail(principal.getName());
+        //this lets the user input their own date instead of today's date
+        LocalDate newDate = java.time.LocalDate.parse(date);
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Item");
             return "item/add";
@@ -73,6 +78,7 @@ public class ItemController extends AbstractBaseController {
             newItem.setUser(user);
             newItem.setCategory(categoryId);
             newItem.setStore(storeId);
+            newItem.setDate(newDate);
             itemDao.save(newItem);
             model.addAttribute("item", newItem);
             model.addAttribute("title", "Add Item");

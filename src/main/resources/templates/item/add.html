@@ -30,6 +30,11 @@
                         th:value="${store.id}"></option>
             </select>
         </div>
+        <div class="form-group">
+            <label th:for="date">Date</label>
+            <input class="form-control" name="date" th:type="*{date}" th:value="${date}" th:field="*{date}"/>
+            <span th:errors="*{date}" class="error"></span>
+        </div>
         <input type="hidden" th:field="*{user}" th:value="${user}"/>
         <input type="submit" value="Add Item" />
     </form>

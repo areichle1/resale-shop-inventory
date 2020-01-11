@@ -1,8 +1,11 @@
 package org.launchcode.resaleshopinventory.models;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.time.LocalDate;
 
 @Entity
 public class Item {
@@ -24,11 +27,16 @@ public class Item {
     @ManyToOne
     private User user;
 
-    public Item(String name, Category category, Store store) {
+    @Column
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate date;
+
+    public Item(String name, Category category, Store store, LocalDate date) {
         this();
         this.name = name;
         this.category = category;
         this.store = store;
+        this.date = date;
     }
 
     public Item() { }
@@ -62,4 +70,8 @@ public class Item {
     public Store getStore() { return store; }
 
     public void setStore(Store store) { this.store = store; }
+
+    public LocalDate getDate() { return date; }
+
+    public void setDate(LocalDate date) { this.date = date; }
 }
