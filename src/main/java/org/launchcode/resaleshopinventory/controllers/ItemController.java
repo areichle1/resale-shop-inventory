@@ -59,7 +59,6 @@ public class ItemController extends AbstractBaseController {
         } else {
             return "/login";
         }
-
     }
 
     @RequestMapping(value = "add", method = RequestMethod.POST)

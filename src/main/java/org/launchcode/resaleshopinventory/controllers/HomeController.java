@@ -15,6 +15,7 @@ public class HomeController extends AbstractBaseController {
     @Autowired
     ItemService itemService;
 
+    //shown when user logs in for their first session
     @RequestMapping(value = "/welcome")
     public String welcome(Principal principal, Model model) {
         User user = userService.findByEmail(principal.getName());

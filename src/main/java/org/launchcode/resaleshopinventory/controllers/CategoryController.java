@@ -55,7 +55,6 @@ public class CategoryController extends AbstractBaseController {
         } else {
             return "category/add";
         }
-
     }
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
