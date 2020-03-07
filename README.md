@@ -27,3 +27,6 @@
 
 <img width="1344" alt="removeStore" src="https://user-images.githubusercontent.com/48965988/76115719-4c767000-5fae-11ea-8e45-967a24cfe977.png">
 
+<img width="1345" alt="loggedOut" src="https://user-images.githubusercontent.com/48965988/76115758-61eb9a00-5fae-11ea-9f78-a460aab4d1d3.png">
+
+<img width="1345" alt="welcome" src="https://user-images.githubusercontent.com/48965988/76115791-6f088900-5fae-11ea-9a8c-5547fc22bd85.png">
